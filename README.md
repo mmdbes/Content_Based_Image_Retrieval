@@ -43,9 +43,7 @@ Here are other CBIR applications :
   - Text-to-image retrieval (e.g., "a dog running in snow")
 
 
----
-
-- **Key Advantages**
+#**Key Advantages**
   - Independent of manual labeling
   - Scalable for large data volumes
   - Visual search without verbal description
