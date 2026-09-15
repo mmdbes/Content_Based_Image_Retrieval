@@ -49,3 +49,63 @@ Here are other CBIR applications :
   - Visual search without verbal description
   - High accuracy with Deep Learning
 
+# Dataset
+I used "imbikramsaha/caltech-101" from kaggle which contains 101 classes totally 8677 of images like planes, motorcycles and etc.
+
+## Classical CBIR: SIFT + Bag of Visual Words + TF-IDF
+
+1. **Feature Extraction**  
+   SIFT descriptors are extracted from each image. Each descriptor is a 128-dimensional vector representing a visual pattern. Images with fewer than 15 keypoints are discarded.
+
+2. **Visual Vocabulary Construction**  
+   All SIFT descriptors from the dataset are collected and clustered using **K-Means** with `K = 100`. The set of 100 centroids forms the **visual vocabulary**.
+
+3. **Quantization & BoVW Histogram**  
+   Each SIFT descriptor is assigned to its nearest visual word. For every image, we count how many times each visual word appears, producing a **100-dimensional histogram** (the BoVW representation).  
+   This histogram captures the frequency of patterns.
+
+4. **TF-IDF Weighting**  
+   The raw histograms are weighted using **TF-IDF** . This downweights common visual words and emphasizes rare, discriminative ones. Vectors are L2-normalized.
+
+5. **Retrieval**  
+   Given a query image, its BoVW histogram is computed and weighted with the same TF-IDF transformer. Similar images are retrieved by ranking database images using **cosine distance**.
+
+### Why BoVW?
+
+- Produces a fixed-length vector for every image, enabling efficient comparison.
+- Does not require labeled data for vocabulary construction.
+- Captures the distribution of local patterns, making it robust to small variations.
+- Can be accelerated with FAISS for large-scale retrieval.
+
+### Limitations
+
+- Loses spatial information .
+- Performance depends on the choice of `K` and the quality of SIFT keypoints.
+
+
+### Evaluation of Traditional Method
+
+| Metric | Score |
+|--------|-------|
+| Mean Precision@5 | **28.51%** |
+| Mean Average Precision (mAP) | **29.34%** |
+
+## Deep Learning CBIR: ResNet50
+
+In addition to the classical approach, a deep learning pipeline is implemented using a pre-trained **ResNet50** model. The last fully connected layer is removed, and each image is encoded as a 2048-dimensional feature vector. Retrieval is performed using cosine distance.
+
+### Evaluation of Deep Learning Method
+The deep model was evaluated on a random sample of 300 images with `top_k = 5`:
+
+| Metric | Score |
+|--------|-------|
+| Mean Precision@5 | **88.33%** |
+| Mean Average Precision (mAP) | **85.43%** |
+
+## Sample Results
+
+![Query Results](2.png)
+
+
+
+
