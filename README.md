@@ -108,6 +108,10 @@ The deep model was evaluated on a random sample of 300 images with `top_k = 5`:
 
 ![Query Results](images/2.png)
 
+## FAISS Indexing
+
+For large-scale retrieval, the project supports FAISS (Facebook AI Similarity Search). 
+FAISS enables fast approximate nearest neighbor search, reducing query time on large datasets which is significantly faster than brute-force cosine distance
 
 
 
