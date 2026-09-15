@@ -90,7 +90,7 @@ I used "imbikramsaha/caltech-101" from kaggle which contains 101 classes totally
 | Mean Precision@5 | **28.51%** |
 | Mean Average Precision (mAP) | **29.34%** |
 
-![Query Results](1.png)
+![Query Results](images/1.png)
 
 ## Deep Learning CBIR: ResNet50
 
@@ -106,7 +106,7 @@ The deep model was evaluated on a random sample of 300 images with `top_k = 5`:
 
 
 
-![Query Results](2.png)
+![Query Results](images/2.png)
 
 
 
