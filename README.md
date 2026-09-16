@@ -49,8 +49,8 @@ Here are other CBIR applications :
   - Visual search without verbal description
   - High accuracy with Deep Learning
 
-# Dataset
-I used "imbikramsaha/caltech-101" from kaggle which contains 101 classes totally 8677 of images like planes, motorcycles and etc.
+# About Dataset
+The Caltech101 dataset contains images from 101 object categories (e.g., “helicopter”, “elephant” and “chair” etc.) and a background category that contains the images not from the 101 object categories. For each object category, there are about 40 to 800 images, while most classes have about 50 images. The resolution of the image is roughly about 300×200 pixels.
 
 ## Classical CBIR: SIFT + Bag of Visual Words + TF-IDF
 
